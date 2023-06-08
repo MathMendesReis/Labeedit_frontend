@@ -10,7 +10,7 @@ const rem = (px: number): string => `${round(px / 16)}rem`;
 
 export const theme: DefaultTheme = {
   colors: {
-    white: '#FFFFFF',
+    white: '#E5E5E5',
     black: '#0C0D0F',
     red: '#E03131',
     orange: '#E8590C',
@@ -38,6 +38,7 @@ export const theme: DefaultTheme = {
     heading: 'IBM Plex Sans, sans-serif',
     sans: 'Open Sans, Arial, Helvetica, sans-serif',
     mono: 'IBM Plex Mono, serif',
+    h1:'IBM Plex Sans',
   },
   fontSize: {
     xs: rem(10),

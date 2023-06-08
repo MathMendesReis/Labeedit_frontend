@@ -48,6 +48,8 @@ declare module 'styled-components' {
       heading: string;
       sans: string;
       mono: string;
+      h1:string,
+
     };
     fontSize: {
       xs: string;
