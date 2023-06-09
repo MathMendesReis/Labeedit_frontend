@@ -15,6 +15,6 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.colors.white};
     color: ${(props) => props.theme.colors.gray900};
     font-family: ${(props) => props.theme.fontFamily.sans};
-    padding: 1rem;
+    padding: 0 1rem;
   }
 `;
