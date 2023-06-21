@@ -1,11 +1,16 @@
 import React from 'react';
-import { Container } from './styles';
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import { ButtonCreatedAccount, Container } from './styles';
+import InputForm from '../../components/forms/LoginForm';
+import HeaderHome from '../../components/header/HeaderHome';
 
 function Main() {
   return (
     <Container>
-      <Logo />
+      <HeaderHome />
+      <InputForm />
+      <ButtonCreatedAccount>
+        <span>criar</span>
+      </ButtonCreatedAccount>
     </Container>
   );
 }

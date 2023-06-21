@@ -1,14 +1,19 @@
-import { useRouteError } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { Container } from './styles';
 
 export default function ErrorPage() {
-  const error = useRouteError();
-  console.log(error);
+  const location = useLocation();
+  const error = location.state?.error;
 
   return (
-    <div id='error-page'>
+    <Container>
       <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>{/* <i>{error.statusText || error.message}</i> */}</p>
-    </div>
+      <p>Desculpe, ocorreu um erro inesperado.</p>
+      {error && (
+        <p>
+          <i>{error.statusText || error.message}</i>
+        </p>
+      )}
+    </Container>
   );
 }
