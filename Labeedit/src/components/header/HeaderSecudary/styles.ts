@@ -3,13 +3,18 @@ import styled from 'styled-components';
 export const Container = styled.header`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  height: 10rem;
+  height: 5rem;
   background-color: ${({ theme }) => theme.colors.secondary};
   margin-bottom: 2.5rem;
   svg {
     grid-column: 2/3;
     width: auto;
     height: 5rem;
+    align-self: center;
+    justify-self: center;
+  }
+  .buttonCloseComents {
+    grid-column: 1/2;
     align-self: center;
     justify-self: center;
   }

@@ -9,6 +9,7 @@ export const ContainerNewPost = styled(ContainerLoginForm)`
     width: 100%;
   }
   input[type='text'] {
+    background-color: ${({ theme }) => theme.colors.secondary};
     width: 18rem;
     vertical-align: top;
     @media (max-width: 265px) {

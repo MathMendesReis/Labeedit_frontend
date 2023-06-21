@@ -1,6 +1,9 @@
 import React from 'react';
 import { Container } from './styles';
 import { ReactComponent as IconLike } from '../../assets/iconLike.svg';
+import { ReactComponent as IconDisike } from '../../assets/iconDislike.svg';
+import { ReactComponent as IconComents } from '../../assets/IconComents.svg';
+import { NavLink } from 'react-router-dom';
 
 export function CardPosts() {
   return (
@@ -20,13 +23,13 @@ export function CardPosts() {
           </button>
           <span>5</span>
           <button>
-            <IconLike />
+            <IconDisike />
           </button>
         </div>
         <div>
-          <button>
-            <IconLike />
-          </button>
+          <NavLink to='/coments'>
+            <IconComents />
+          </NavLink>
           <span>14</span>
         </div>
       </footer>

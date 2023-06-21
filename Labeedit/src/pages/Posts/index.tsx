@@ -8,6 +8,26 @@ function PostPages() {
     <Container>
       <NewPostForm />
       <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
     </Container>
   );
 }

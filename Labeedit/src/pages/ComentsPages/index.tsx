@@ -1,10 +1,16 @@
 import React from 'react';
 import { Container } from './styles';
+import { CardPosts } from '../../components/cardPosts';
+import NewComentForm from '../../components/forms/NewComentsForm';
 
 function ComentsPages() {
   return (
     <Container>
-      <h1>ComentsPages</h1>
+      <CardPosts />
+      <NewComentForm />
+      <CardPosts />
+      <CardPosts />
+      <CardPosts />
     </Container>
   );
 }
