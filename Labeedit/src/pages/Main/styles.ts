@@ -17,5 +17,5 @@ export const ButtonCreatedAccount = styled(ContainerButtonCustomer)`
   color: ${({ theme }) => theme.colors.orange};
   background: transparent;
   border: 1px solid;
-  margin-top: 2rem;
+  margin-top: 5rem;
 `;

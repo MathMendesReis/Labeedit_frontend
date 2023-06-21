@@ -14,7 +14,7 @@ export const Container = styled.div`
     background: linear-gradient(
       45deg,
       ${({ theme }) => theme.colors.pink} 0%,
-      ${({ theme }) => theme.colors.yellow} 50%
+      ${({ theme }) => theme.colors.yellow} 70%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

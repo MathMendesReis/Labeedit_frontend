@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { ContainerLoginForm } from './styles';
-import { FormValuesLogin, schema } from './validationSchemma';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { functionShowPassword } from '../../../helpers/showPassword';
 import ButtonCustomer from '../../buttonCustomer';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FormValuesLogin, schema } from './validationSchemma';
+import { ContainerSingUpForm } from './styles';
 
-export default function InputForm() {
+export default function SingUpForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -23,7 +23,13 @@ export default function InputForm() {
   };
 
   return (
-    <ContainerLoginForm onSubmit={handleSubmit(onSubmit)}>
+    <ContainerSingUpForm onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name='apelido'
+        control={control}
+        render={({ field }) => <input type='text' id='apelido' placeholder='Apelido' {...field} />}
+      />
+      {errors.apelido && <p className='error'>{errors.apelido.message}</p>}
       <Controller
         name='email'
         control={control}
@@ -58,7 +64,21 @@ export default function InputForm() {
           </div>
         )}
       />
+      <p className='paragraph'>
+        Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade
+      </p>
+      <Controller
+        name='acceptTerms'
+        control={control}
+        render={({ field }) => (
+          <label className='label-checkboc'>
+            <input type='checkbox' {...field} />
+            Eu concordo em receber emails sobre coisas legais no Labeddit
+          </label>
+        )}
+      />
+      {errors.acceptTerms && <p className='error'>{errors.acceptTerms.message}</p>}
       <ButtonCustomer textButton='Continuar' buttonType='submit' />
-    </ContainerLoginForm>
+    </ContainerSingUpForm>
   );
 }
