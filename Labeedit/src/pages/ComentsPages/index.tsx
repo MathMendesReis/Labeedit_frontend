@@ -6,11 +6,8 @@ import NewComentForm from '../../components/forms/NewComentsForm';
 function ComentsPages() {
   return (
     <Container>
-      <CardPosts />
       <NewComentForm />
-      <CardPosts />
-      <CardPosts />
-      <CardPosts />
+      {/* <CardPosts /> */}
     </Container>
   );
 }

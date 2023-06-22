@@ -8,16 +8,19 @@ import { GlobalStyle } from './styles/global';
 import router from './routers/router';
 import { Provider } from 'react-redux';
 import store from './app/store';
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from './services/queryClient';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <Theme>
-      <Provider store={store}>
-        <GlobalStyle />
-        <RouterProvider router={router} />
-      </Provider>
-      ,
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <GlobalStyle />
+          <RouterProvider router={router} />
+        </Provider>
+      </QueryClientProvider>
     </Theme>
   </React.StrictMode>,
 );

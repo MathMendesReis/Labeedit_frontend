@@ -4,24 +4,33 @@ import { ReactComponent as IconLike } from '../../assets/iconLike.svg';
 import { ReactComponent as IconDisike } from '../../assets/iconDislike.svg';
 import { ReactComponent as IconComents } from '../../assets/IconComents.svg';
 import { NavLink } from 'react-router-dom';
+import { Post } from '../../interfaces/Post';
 
-export function CardPosts() {
+export function CardPosts({
+  post_id,
+  user_id,
+  content,
+  created_at_post,
+  update_at_post,
+  nameUser,
+  likes,
+  dislikes,
+  totalComments,
+}: Post) {
   return (
     <Container>
       <header>
-        <p>Enviado por : Galdino123</p>
+        <p>Enviado por : {nameUser}</p>
       </header>
       <main>
-        <p>
-          Porque a maioria dos desenvolvedores usam Linux? ou as empresas de tecnologia usam Linux ?
-        </p>
+        <p>{content}</p>
       </main>
       <footer>
         <div>
           <button>
             <IconLike />
           </button>
-          <span>5</span>
+          <span>{likes}</span>
           <button>
             <IconDisike />
           </button>
@@ -30,7 +39,7 @@ export function CardPosts() {
           <NavLink to='/coments'>
             <IconComents />
           </NavLink>
-          <span>14</span>
+          <span>{totalComments}</span>
         </div>
       </footer>
     </Container>
