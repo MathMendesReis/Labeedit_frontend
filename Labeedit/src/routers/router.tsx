@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         element: <PostPages />,
       },
       {
-        path: 'coments',
+        path: 'coments/:id',
         element: <ComentsPages />,
       },
     ],

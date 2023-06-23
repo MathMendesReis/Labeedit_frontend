@@ -11,12 +11,15 @@ export const ContainerNewPost = styled(ContainerLoginForm)`
   input[type='text'] {
     background-color: ${({ theme }) => theme.colors.secondary};
     width: 18rem;
-    vertical-align: top;
     @media (max-width: 265px) {
       width: 100%;
     }
   }
   .button {
     width: 100%;
+  }
+  input::placeholder {
+    font-weight: bold;
+    text-align: center;
   }
 `;

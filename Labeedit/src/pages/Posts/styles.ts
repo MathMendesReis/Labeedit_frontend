@@ -4,4 +4,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 `;

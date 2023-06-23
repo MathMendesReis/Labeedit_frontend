@@ -26,7 +26,7 @@ export const ContainerLoginForm = styled.form`
     padding: 1rem;
     border-radius: 12px;
     flex: 1;
-    border: 1px solid ${({ theme }) => theme.colors.secondary};
+    border: 1px solid ${({ theme }) => darken(0.2, theme.colors.secondary)};
     @media (max-width: 233px) {
       width: 100%;
     }

@@ -9,6 +9,7 @@ import { ContainerSingUpForm } from './styles';
 
 export default function SingUpForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isBorder, setIsBorder] = useState<boolean>(false);
 
   const {
     control,
@@ -23,7 +24,7 @@ export default function SingUpForm() {
   };
 
   return (
-    <ContainerSingUpForm onSubmit={handleSubmit(onSubmit)}>
+    <ContainerSingUpForm isActive={isBorder} onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name='apelido'
         control={control}
