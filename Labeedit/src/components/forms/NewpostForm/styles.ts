@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ContainerLoginForm } from '../LoginForm/styles';
 
 export const ContainerNewPost = styled(ContainerLoginForm)`
-  height: 17rem;
+  min-height: 17rem;
   padding-bottom: 2rem;
   margin-bottom: 2rem;
   @media (max-width: 287px) {

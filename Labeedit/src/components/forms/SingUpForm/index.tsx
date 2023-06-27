@@ -4,29 +4,31 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { functionShowPassword } from '../../../helpers/showPassword';
 import ButtonCustomer from '../../buttonCustomer';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { FormValuesLogin, schema } from './validationSchemma';
+import { FormValuesRegister, schema } from './validationSchemma';
 import { ContainerSingUpForm } from './styles';
+import { BASE_URL } from '../../../helpers/BaseUrl';
 
 export default function SingUpForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isBorder, setIsBorder] = useState<boolean>(false);
 
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<FormValuesLogin>({
+  } = useForm<FormValuesRegister>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<FormValuesLogin> = (data) => {
+  const onSubmit: SubmitHandler<FormValuesRegister> = async (data) => {
     console.log(data);
   };
 
   return (
-    <ContainerSingUpForm isActive={isBorder} onSubmit={handleSubmit(onSubmit)}>
+    <ContainerSingUpForm onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name='apelido'
+        defaultValue=''
         control={control}
         render={({ field }) => <input type='text' id='apelido' placeholder='Apelido' {...field} />}
       />
@@ -34,6 +36,7 @@ export default function SingUpForm() {
       <Controller
         name='email'
         control={control}
+        defaultValue=''
         render={({ field }) => (
           <input type='email' id='email' autoComplete='email' placeholder='E-mail' {...field} />
         )}
@@ -42,6 +45,7 @@ export default function SingUpForm() {
       <Controller
         name='password'
         control={control}
+        defaultValue=''
         render={({ field }) => (
           <div className='grouped-password'>
             <input type='password' id='password' placeholder='Password' {...field} />
@@ -79,6 +83,11 @@ export default function SingUpForm() {
         )}
       />
       {errors.acceptTerms && <p className='error'>{errors.acceptTerms.message}</p>}
+      {/* {isLoading && (
+        <Rotate>
+          <FaCircleNotch />
+        </Rotate>
+      )} */}
       <ButtonCustomer textButton='Continuar' buttonType='submit' />
     </ContainerSingUpForm>
   );

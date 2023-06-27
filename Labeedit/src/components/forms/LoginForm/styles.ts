@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { darken } from 'polished';
+import styled, { keyframes } from 'styled-components';
 
 export const ContainerLoginForm = styled.form`
   display: flex;
@@ -36,8 +36,11 @@ export const ContainerLoginForm = styled.form`
     flex-direction: column;
     align-items: end;
     justify-content: center;
-    p {
+    .error {
       align-self: center;
+      color: red;
+      font-weight: 400;
+      font-size: 1.2rem;
     }
     svg {
       display: inline;
@@ -49,7 +52,31 @@ export const ContainerLoginForm = styled.form`
       width: 1.5rem !important;
       height: 100%;
       left: -10px;
-      color: ${({ theme }) => darken(0.1, theme.colors.background)};
+      color: ${({ theme }) => darken(0.3, theme.colors.background)};
+    }
+  }
+
+  .error {
+    align-self: center;
+    color: red;
+    font-weight: 400;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .loading {
+    svg {
+      height: 1.1rem;
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      animation: spin 1s infinite linear;
     }
   }
 `;

@@ -5,27 +5,23 @@ import { ReactComponent as IconDisike } from '../../assets/iconDislike.svg';
 import { ReactComponent as IconComents } from '../../assets/IconComents.svg';
 import { NavLink } from 'react-router-dom';
 import { Post } from '../../interfaces/Post';
-import usePosts from '../hooks/usePosts';
 
 export function CardPosts({
-  post_id,
-  user_id,
-  content,
-  created_at_post,
-  update_at_post,
-  nameUser,
+  id,
+  contents,
+  name_user,
   likes,
   dislikes,
-  totalComments,
+  totalComents,
+  coments,
 }: Post) {
-  const { getPostById } = usePosts();
   return (
     <Container>
       <header>
-        <p>Enviado por : {nameUser}</p>
+        <p>Enviado por : {name_user}</p>
       </header>
       <main>
-        <p>{content}</p>
+        <p>{contents}</p>
       </main>
       <footer>
         <div>
@@ -38,15 +34,10 @@ export function CardPosts({
           </button>
         </div>
         <div>
-          <NavLink
-            to={`/coments/${post_id}`}
-            onClick={() => {
-              getPostById(post_id);
-            }}
-          >
+          <NavLink to={`/coments/${id}`}>
             <IconComents />
           </NavLink>
-          <span>{totalComments}</span>
+          <span>{totalComents}</span>
         </div>
       </footer>
     </Container>

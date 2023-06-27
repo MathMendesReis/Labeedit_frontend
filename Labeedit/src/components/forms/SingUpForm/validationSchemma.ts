@@ -8,4 +8,4 @@ export const schema = yup
   })
   .required();
 
-export type FormValuesLogin = yup.InferType<typeof schema>;
+export type FormValuesRegister = yup.InferType<typeof schema>;

@@ -4,8 +4,8 @@ import { CardPosts } from '../../components/cardPosts';
 import NewComentForm from '../../components/forms/NewComentsForm';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { BASE_URL } from '../../helpers/BaseUrl';
 import { Post } from '../../interfaces/Post';
+import { BASE_URL } from '../../helpers/BaseUrl';
 
 function ComentsPages() {
   const { id } = useParams();
@@ -33,16 +33,14 @@ function ComentsPages() {
       {error && <p>{error}</p>}
       {post && (
         <CardPosts
-          key={post.post_id}
-          post_id={post.post_id}
-          user_id={post.user_id}
-          content={post.content}
-          created_at_post={post.created_at_post}
-          update_at_post={post.update_at_post}
-          nameUser={post.nameUser}
+          key={post.id}
+          id={post.id}
+          name_user={post.name_user}
+          contents={post.contents}
           likes={post.likes}
           dislikes={post.dislikes}
-          totalComments={post.totalComments}
+          totalComents={post.totalComents}
+          coments={post.coments}
         />
       )}
       <NewComentForm />

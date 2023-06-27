@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { ContainerLoginForm } from './styles';
 import { FormValuesLogin, schema } from './validationSchemma';
@@ -6,11 +6,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { functionShowPassword } from '../../../helpers/showPassword';
 import ButtonCustomer from '../../buttonCustomer';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import useLogin from '../../hooks/UseLogin';
+// import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 export default function InputForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [isBorder, setIsBorder] = useState<boolean>(false);
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -33,8 +32,6 @@ export default function InputForm() {
     });
     reset();
   };
-  const { response, error, isLoading } = useLogin(form);
-
   return (
     <ContainerLoginForm onSubmit={handleSubmit(onSubmit)}>
       <Controller
@@ -73,7 +70,12 @@ export default function InputForm() {
           </div>
         )}
       />
-      {error && <p>E-mail ou password incorretos</p>}
+      {/* {error && <p>E-mail ou password incorretos</p>}
+      {isLoading && (
+        <div className='loading'>
+          <AiOutlineLoading3Quarters />
+        </div>
+      )} */}
       <ButtonCustomer textButton='Continuar' buttonType='submit' />
     </ContainerLoginForm>
   );

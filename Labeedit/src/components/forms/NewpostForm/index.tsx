@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import ButtonCustomer from '../../buttonCustomer';
 import { NewPosFormValues, schema } from './validationSchemma';
 import { ContainerNewPost } from './styles';
-import usePosts from '../../hooks/usePosts';
 
 export default function NewPostForm() {
   const {
@@ -15,16 +14,9 @@ export default function NewPostForm() {
   } = useForm<NewPosFormValues>({
     resolver: yupResolver(schema),
   });
-  const { response, error, isLoading, createNewPost, getAllPosts } = usePosts();
 
   const onSubmit: SubmitHandler<NewPosFormValues> = async (data) => {
-    try {
-      await createNewPost(data);
-      reset();
-      getAllPosts();
-    } catch (error) {
-      console.error('Erro ao criar o post:', error);
-    }
+    console.log(data);
   };
 
   return (

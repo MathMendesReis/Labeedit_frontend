@@ -1,11 +1,15 @@
 export interface Post {
-  post_id: string;
-  user_id: string;
-  content: string;
-  created_at_post: string;
-  update_at_post: string;
-  nameUser: string;
-  likes: number;
+  id: string;
+  contents: string;
+  name_user: string;
+  likes: string;
   dislikes: number;
-  totalComments: number;
+  totalComents: number;
+  coments: Coments[];
+}
+
+export interface Coments {
+  id: string;
+  content: string;
+  likes: number;
 }

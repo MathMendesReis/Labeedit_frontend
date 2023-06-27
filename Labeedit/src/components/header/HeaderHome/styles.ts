@@ -19,6 +19,9 @@ export const Container = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  h1::first-letter {
+    font-size: 2.5rem;
+  }
   svg {
     width: 10rem !important;
     height: auto;
