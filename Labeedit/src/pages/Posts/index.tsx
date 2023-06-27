@@ -2,34 +2,34 @@ import React from 'react';
 import { Container, Rotate } from './styles';
 import NewPostForm from '../../components/forms/NewpostForm';
 import { CardPosts } from '../../components/cardPosts';
-import { Post } from '../../interfaces/Post';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import usePosts from '../../services/usePosts';
+import { posts } from '../../interfaces/Post';
 
 function PostPages() {
+  const { data, isLoading } = usePosts();
+
   return (
     <Container>
       <NewPostForm />
       <main>
-        {/* {isLoading ? (
+        {isLoading ? (
           <Rotate>
             <AiOutlineLoading3Quarters />
           </Rotate>
         ) : (
-          response
-            // ?.sort((a, b) => a.created_at_post as Date - b.created_at_post)
-            ?.map((post: Post) => (
-              <CardPosts
-                key={post.id}
-                id={post.id}
-                name_user={post.name_user}
-                contents={post.contents}
-                likes={post.likes}
-                dislikes={post.dislikes}
-                totalComents={post.totalComents}
-                coments={post.coments}
-              />
-            ))
-        )} */}
+          data?.map((post: posts) => (
+            <CardPosts
+              key={post.id}
+              id={post.id}
+              name_user={post.name_user}
+              contents={post.contents}
+              likes={post.likes}
+              dislikes={post.dislikes}
+              coments={post.coments}
+            />
+          ))
+        )}
       </main>
     </Container>
   );

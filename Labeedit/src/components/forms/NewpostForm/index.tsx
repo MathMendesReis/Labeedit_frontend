@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import ButtonCustomer from '../../buttonCustomer';
 import { NewPosFormValues, schema } from './validationSchemma';
 import { ContainerNewPost } from './styles';
+import usePosts from '../../../services/usePosts';
 
 export default function NewPostForm() {
   const {
@@ -14,28 +15,30 @@ export default function NewPostForm() {
   } = useForm<NewPosFormValues>({
     resolver: yupResolver(schema),
   });
+  const { createPost } = usePosts();
 
-  const onSubmit: SubmitHandler<NewPosFormValues> = async (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<NewPosFormValues> = async ({ contents }: NewPosFormValues) => {
+    createPost({ contents });
+    reset();
   };
 
   return (
     <ContainerNewPost onSubmit={handleSubmit(onSubmit)}>
       <Controller
-        name='content'
+        name='contents'
         control={control}
         defaultValue=''
         render={({ field }) => (
           <input
             type='text'
             id='content'
-            autoComplete='content'
+            autoComplete='contents'
             placeholder='Escreva seu post...'
             {...field}
           />
         )}
       />
-      {errors.content && <p className='error'>{errors.content.message}</p>}
+      {errors.contents && <p className='error'>{errors.contents.message}</p>}
 
       <ButtonCustomer textButton='Postar' buttonType='submit' />
     </ContainerNewPost>

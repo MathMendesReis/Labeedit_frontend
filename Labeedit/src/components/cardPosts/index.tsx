@@ -4,17 +4,21 @@ import { ReactComponent as IconLike } from '../../assets/iconLike.svg';
 import { ReactComponent as IconDisike } from '../../assets/iconDislike.svg';
 import { ReactComponent as IconComents } from '../../assets/IconComents.svg';
 import { NavLink } from 'react-router-dom';
-import { Post } from '../../interfaces/Post';
+import usePosts from '../../services/usePosts';
+import { LikeDislike } from '../../interfaces/LikeDislike';
+import { posts } from '../../interfaces/Post';
 
-export function CardPosts({
-  id,
-  contents,
-  name_user,
-  likes,
-  dislikes,
-  totalComents,
-  coments,
-}: Post) {
+export function CardPosts({ id, contents, name_user, likes, dislikes, coments }: posts) {
+  const bodyLike: LikeDislike = {
+    id,
+    like: 1,
+  };
+  const bodyDisike: LikeDislike = {
+    id,
+    like: 0,
+  };
+  const { likeDislike, getPostsById } = usePosts();
+
   return (
     <Container>
       <header>
@@ -25,19 +29,32 @@ export function CardPosts({
       </main>
       <footer>
         <div>
-          <button>
+          <button
+            onClick={() => {
+              likeDislike(bodyLike);
+            }}
+          >
             <IconLike />
           </button>
           <span>{likes}</span>
-          <button>
+          <button
+            onClick={() => {
+              likeDislike(bodyDisike);
+            }}
+          >
             <IconDisike />
           </button>
         </div>
         <div>
-          <NavLink to={`/coments/${id}`}>
+          <NavLink
+            to={`/coments/${id}`}
+            onClick={() => {
+              getPostsById(id);
+            }}
+          >
             <IconComents />
           </NavLink>
-          <span>{totalComents}</span>
+          <span>{coments}</span>
         </div>
       </footer>
     </Container>
