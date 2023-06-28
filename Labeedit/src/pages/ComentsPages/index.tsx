@@ -2,29 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { Container } from './styles';
 import { CardPosts } from '../../components/cardPosts';
 import NewComentForm from '../../components/forms/NewComentsForm';
-import { useMutation } from 'react-query';
+import { useQuery } from 'react-query';
 import api from '../../services/api';
 import { useParams } from 'react-router-dom';
-import { post } from '../../interfaces/Post';
+import { posts } from '../../interfaces/Post';
 
 function ComentsPages() {
-  const { id } = useParams();
-  const mutation = useMutation((id: string): Promise<post[]> => {
-    return api.get(`/posts/${id}`);
-  });
+  const { id } = useParams() as { id: string };
+  const [coments, setComents] = useState([]);
 
-  useEffect(() => {
-    if (id) {
-      mutation.mutate(id);
-    }
-  }, []);
+  const { data, isLoading } = useQuery(['coments', id], () => getPostsById(id));
 
-  const { data, isLoading, context } = mutation;
+  const getPostsById = async (id: string) => {
+    const { data } = await api.get(`/posts/${id}`);
+    data?.map((post: any) => {
+      setComents(post.coments);
+    });
+    return data;
+  };
   return (
     <Container>
-      {isLoading && <p>caregando...</p>}
-      {data &&
-        data.map((post) => (
+      {isLoading ? (
+        <p>Carregando...</p>
+      ) : (
+        data?.map((post: posts) => (
           <CardPosts
             key={post.id}
             id={post.id}
@@ -32,10 +33,24 @@ function ComentsPages() {
             contents={post.contents}
             likes={post.likes}
             dislikes={post.dislikes}
-            coments={1}
+            total_coments={post.total_coments}
+            coments={post.coments || []}
           />
-        ))}
+        ))
+      )}
       <NewComentForm />
+      {coments?.map((coments: any) => (
+        <CardPosts
+          key={coments.id}
+          id={coments.id}
+          name_user={coments.name_user}
+          contents={coments.contents}
+          likes={coments.likes}
+          dislikes={0}
+          total_coments={0}
+          coments={[]}
+        />
+      ))}
     </Container>
   );
 }

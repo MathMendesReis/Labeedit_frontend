@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 export const schema = yup
   .object({
-    content: yup.string().required('O email é obrigatório.').email('O email deve ser válido.'),
+    contents: yup.string().required('Campo é obrigatório.'),
   })
   .required();
 

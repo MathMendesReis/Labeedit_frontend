@@ -26,7 +26,8 @@ function PostPages() {
               contents={post.contents}
               likes={post.likes}
               dislikes={post.dislikes}
-              coments={post.coments}
+              total_coments={post.total_coments}
+              coments={[]}
             />
           ))
         )}

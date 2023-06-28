@@ -35,6 +35,15 @@ export default function usePosts() {
     const { data } = await api.post('/like', body);
     return data;
   };
+  const likeDislikeComents = async ({ id, like }: LikeDislike) => {
+    const body = {
+      token,
+      post_id: id,
+      like,
+    };
+    const { data } = await api.post('/like', body);
+    return data;
+  };
 
   const { data, isLoading, isError } = useQuery('posts', getPosts);
 
@@ -45,6 +54,11 @@ export default function usePosts() {
   });
 
   const likeDislikeMutation = useMutation(likeDislike, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('posts');
+    },
+  });
+  const likeDislikeComentsMutation = useMutation(likeDislikeComents, {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
     },
@@ -62,5 +76,6 @@ export default function usePosts() {
     createPost: mutation.mutate,
     likeDislike: likeDislikeMutation.mutate,
     getPostsById: getPostsByIdMutation.mutate,
+    likeDislikeComents: likeDislikeComentsMutation.mutate,
   };
 }

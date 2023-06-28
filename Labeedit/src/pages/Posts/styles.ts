@@ -9,6 +9,7 @@ export const Container = styled.div`
   main {
     display: flex;
     flex-direction: column-reverse;
+    flex: 1;
   }
 `;
 

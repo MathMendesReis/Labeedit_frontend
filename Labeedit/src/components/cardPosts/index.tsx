@@ -3,13 +3,37 @@ import { Container } from './styles';
 import { ReactComponent as IconLike } from '../../assets/iconLike.svg';
 import { ReactComponent as IconDisike } from '../../assets/iconDislike.svg';
 import { ReactComponent as IconComents } from '../../assets/IconComents.svg';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import usePosts from '../../services/usePosts';
 import { LikeDislike } from '../../interfaces/LikeDislike';
-import { posts } from '../../interfaces/Post';
+import { coments } from '../../interfaces/Post';
 
-export function CardPosts({ id, contents, name_user, likes, dislikes, coments }: posts) {
+interface CardPostsProps {
+  id: string;
+  contents: string;
+  name_user: string;
+  likes: number;
+  dislikes: number;
+  total_coments: number;
+  coments: coments[];
+}
+
+export function CardPosts({
+  id,
+  contents,
+  name_user,
+  likes,
+  dislikes,
+  total_coments,
+  coments,
+}: CardPostsProps) {
+  const { idComents } = useParams();
+
   const bodyLike: LikeDislike = {
+    id,
+    like: 1,
+  };
+  const bodyLikeComents: LikeDislike = {
     id,
     like: 1,
   };
@@ -17,6 +41,7 @@ export function CardPosts({ id, contents, name_user, likes, dislikes, coments }:
     id,
     like: 0,
   };
+
   const { likeDislike, getPostsById } = usePosts();
 
   return (
@@ -54,7 +79,7 @@ export function CardPosts({ id, contents, name_user, likes, dislikes, coments }:
           >
             <IconComents />
           </NavLink>
-          <span>{coments}</span>
+          <span>{total_coments}</span>
         </div>
       </footer>
     </Container>
