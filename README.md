@@ -1,4 +1,4 @@
-# [[Labeddit Full Stack - Frontend](https://labeedit-frontend.vercel.app/)]
+# [Labeddit Full Stack - Frontend](https://labeedit-frontend.vercel.app/)
 
 Este é o backend do projeto Labeddit Full Stack, uma aplicação de rede social onde os usuários podem compartilhar e interagir com posts.
 
