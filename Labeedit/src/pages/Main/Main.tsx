@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import ButtonCustomer from '../../components/CustomerButton';
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 
 const schema = yup
   .object({
@@ -14,6 +15,16 @@ const schema = yup
   .required();
 function Main() {
   const [isErroInput, setIsErroInput] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<string>('text');
+
+  const handleTogglePassword = () => {
+    if (showPassword === 'text') {
+      setShowPassword('password');
+    } else {
+      setShowPassword('text');
+    }
+  };
+
   const {
     register,
     handleSubmit,
@@ -28,8 +39,13 @@ function Main() {
       setIsErroInput(false);
     }
   }, [errors]);
-  const onSubmit = (data: any) => {
-    return;
+
+  interface login {
+    email: string;
+    password: string;
+  }
+  const onSubmit = (data: login) => {
+    console.log(data);
   };
 
   return (
@@ -50,9 +66,13 @@ function Main() {
           <input {...register('email')} placeholder='E-mail' />
           <p>{errors.email?.message}</p>
 
-          <input {...register('password')} placeholder='Senha' />
-          <p>{errors.password?.message}</p>
-
+          <label>
+            <input {...register('password')} placeholder='Senha' type={showPassword} />
+            <button type='button' onClick={handleTogglePassword} className='showPassword'>
+              {showPassword === 'text' ? <IoMdEyeOff /> : <IoMdEye />}
+            </button>
+            <p>{errors.password?.message}</p>
+          </label>
           <ButtonCustomer text='Continuar' />
           <span></span>
         </form>

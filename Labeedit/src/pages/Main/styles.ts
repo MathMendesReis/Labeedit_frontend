@@ -48,6 +48,20 @@ export const Container = styled.div<containerProps>`
       flex-direction: column;
       gap: 0.7847rem;
       padding: 1rem;
+      label {
+        position: relative;
+        display: inline-block;
+        @media (max-width: 388px) {
+          width: 100%;
+        }
+      }
+      > p {
+        color: red;
+        font-weight: 500;
+      }
+      > input:last-child {
+        padding-right: 2.5rem;
+      }
       input {
         width: 22.6875rem;
         height: 3.75rem;
@@ -85,11 +99,11 @@ export const Container = styled.div<containerProps>`
     button {
       display: flex;
       width: 22.8125rem;
-      padding: 0.8125rem 8.3125rem;
       justify-content: center;
       align-items: center;
+      padding: 0.8125rem 8.3125rem;
       gap: 0.625rem;
-      border-radius: 1.6875rem;
+      border-radius: 2.6875rem;
       border: 1px solid #fe7e02;
       color: #fe7e02;
       text-align: center;
@@ -103,5 +117,14 @@ export const Container = styled.div<containerProps>`
         padding: 0;
       }
     }
+  }
+
+  .showPassword {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 55%;
+    right: 0.8rem;
+    transform: translateY(-50%);
   }
 `;
