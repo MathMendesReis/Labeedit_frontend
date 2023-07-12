@@ -1,5 +1,7 @@
 # Labeddit Full Stack - Frontend
 
+[[Clique aqui](https://labeedit-frontend.vercel.app/)](https://labeedit-frontend.vercel.app/)
+
 Este é o backend do projeto Labeddit Full Stack, uma aplicação de rede social onde os usuários podem compartilhar e interagir com posts.
 
 ## Tecnologias utilizadas
@@ -10,7 +12,7 @@ Este é o backend do projeto Labeddit Full Stack, uma aplicação de rede social
 - SQLite
 - Knex.js
 - Jest (para testes)
-
+https://labeedit-frontend.vercel.app/
 ## Funcionalidades
 
 O backend do Labeddit Full Stack oferece as seguintes funcionalidades:
@@ -25,7 +27,7 @@ O backend do Labeddit Full Stack oferece as seguintes funcionalidades:
 
 ## Documentação da API
 
-A documentação completa da API pode ser encontrada no Postman. [Clique aqui](https://documenter.getpostman.com/view/24880324/2s946chF9V) para acessar a documentação e explorar as rotas disponíveis, exemplos de requisições e respostas, e os cabeçalhos necessários para autenticação!
+A documentação completa da API pode ser encontrada no Postman. [[Clique aqui](https://documenter.getpostman.com/view/24880324/2s946chF9V)] para acessar a documentação e explorar as rotas disponíveis, exemplos de requisições e respostas, e os cabeçalhos necessários para autenticação!
 
 ## Backend
 O repositório do Backend do projeto Labeddit Full Stack pode ser acessado através deste [link](https://github.com/MathMendesReis/Labeedit/blob/main/README.md) . Lá você encontrará o código fonte do frontend e poderá explorar a implementação das telas e funcionalidades da aplicação.
