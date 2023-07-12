@@ -18,9 +18,35 @@ export const Container = styled.div`
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    @keyframes translate {
+      0% {
+        /* transform: translateY(700px); */
+        transform: translatex(900px);
+        opacity: 0;
+      }
+      100% {
+        transform: translatex(0);
+        opacity: 1;
+      }
+    }
+    animation: translate 2s normal;
   }
   h1::first-letter {
-    font-size: 2.5rem;
+    font-size: 3rem;
+  }
+  h3 {
+    @keyframes translate {
+      0% {
+        /* transform: translateY(700px); */
+        transform: translatex(900px);
+        opacity: 0;
+      }
+      80% {
+        transform: translatex(-100px);
+        opacity: 1;
+      }
+    }
+    animation: translate 2s normal;
   }
   svg {
     width: 10rem !important;

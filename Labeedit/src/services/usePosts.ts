@@ -1,9 +1,9 @@
 import { useQuery, useMutation } from 'react-query';
 import api from './api';
 import { queryClient } from './queryClient';
-import { NewPosFormValues } from '../components/forms/NewpostForm/validationSchemma';
 import { LikeDislike } from '../interfaces/LikeDislike';
 import { posts } from '../interfaces/Post';
+import { NewPosFormValues } from '../pages/Posts/validationSchemma';
 
 export default function usePosts() {
   const token = localStorage.getItem('@token');
@@ -12,6 +12,8 @@ export default function usePosts() {
     const { data } = await api.get('/posts');
     return data;
   };
+  const { data, isLoading, isError } = useQuery('posts', getPosts);
+
   const getPostsById = async (id: string) => {
     const { data } = await api.get(`/posts/:${id}`);
     return data;
@@ -41,24 +43,17 @@ export default function usePosts() {
       post_id: id,
       like,
     };
-    const { data } = await api.post('/like', body);
+    const { data } = await api.post('/likesComents', body);
     return data;
   };
 
-  const { data, isLoading, isError } = useQuery('posts', getPosts);
-
-  const mutation = useMutation(createPost, {
+  const createPostPostMutation = useMutation(createPost, {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
     },
   });
 
   const likeDislikeMutation = useMutation(likeDislike, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('posts');
-    },
-  });
-  const likeDislikeComentsMutation = useMutation(likeDislikeComents, {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
     },
@@ -73,9 +68,8 @@ export default function usePosts() {
     data,
     isLoading,
     isError,
-    createPost: mutation.mutate,
+    createPost: createPostPostMutation.mutate,
     likeDislike: likeDislikeMutation.mutate,
     getPostsById: getPostsByIdMutation.mutate,
-    likeDislikeComents: likeDislikeComentsMutation.mutate,
   };
 }

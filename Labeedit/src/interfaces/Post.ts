@@ -10,6 +10,8 @@ export interface posts {
 
 export interface coments {
   id: string;
-  content: string;
-  likes: number | coments[];
+  name_user: string;
+  contents: string;
+  likes: number;
+  dislikes: number;
 }

@@ -6,4 +6,9 @@ export const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   height: 100%;
+
+  main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 `;

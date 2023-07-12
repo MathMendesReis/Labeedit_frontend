@@ -1,37 +1,44 @@
 import React from 'react';
-import { Container } from './styles';
 import { ReactComponent as IconLike } from '../../assets/iconLike.svg';
 import { ReactComponent as IconDisike } from '../../assets/iconDislike.svg';
 import { ReactComponent as IconComents } from '../../assets/IconComents.svg';
 import { NavLink, useParams } from 'react-router-dom';
-import usePosts from '../../services/usePosts';
-import { LikeDislike } from '../../interfaces/LikeDislike';
-import { coments } from '../../interfaces/Post';
+import { Container } from './styles';
+import useComents from '../../services/useComents';
+import { InputLikeDislikeComents } from '../../interfaces/InputLikeDislikeComents';
 
 interface CardPostsProps {
-  id: string;
+  post_id: string;
   contents: string;
   name_user: string;
   likes: number;
-  dislikes?: number;
+  dislikes: number;
   total_coments: number;
-  coments?: coments[];
 }
 
-export function CardPosts({ id, contents, name_user, likes, total_coments }: CardPostsProps) {
-  const { idComents } = useParams();
-
-  const bodyLike: LikeDislike = {
-    id,
-    like: 1,
+export function ComentsCards({
+  post_id,
+  contents,
+  name_user,
+  likes,
+  dislikes,
+  total_coments,
+}: CardPostsProps) {
+  const { like, refetch } = useComents(post_id);
+  const handLike = async (coments_id: string, value: number) => {
+    const token = localStorage.getItem('@token');
+    if (!token) {
+      return;
+    }
+    const body: InputLikeDislikeComents = {
+      token,
+      coments_id,
+      like: value,
+    };
+    like.mutate(body);
+    refetch();
   };
-  const bodyDisike: LikeDislike = {
-    id,
-    like: 0,
-  };
-
-  const { likeDislike } = usePosts();
-
+  const { id } = useParams() as { id: string };
   return (
     <Container>
       <header>
@@ -42,26 +49,18 @@ export function CardPosts({ id, contents, name_user, likes, total_coments }: Car
       </main>
       <footer>
         <div>
-          <button
-            onClick={() => {
-              likeDislike(bodyLike);
-            }}
-          >
+          <button onClick={() => handLike(id, 1)}>
             <IconLike />
           </button>
           <span>{likes}</span>
-          <button
-            onClick={() => {
-              likeDislike(bodyDisike);
-            }}
-          >
+          <button onClick={() => handLike(id, 0)}>
             <IconDisike />
           </button>
         </div>
         <div>
-          <NavLink to={`/coments/${id}`}>
+          <button>
             <IconComents />
-          </NavLink>
+          </button>
           <span>{total_coments}</span>
         </div>
       </footer>

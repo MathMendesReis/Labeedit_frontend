@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ContainerLoginForm } from '../Main/styles';
 
 export const Container = styled.div`
   display: flex;
@@ -29,5 +30,28 @@ export const Rotate = styled.div`
       }
     }
     animation: spin 1s infinite linear;
+  }
+`;
+export const ContainerNewPost = styled(ContainerLoginForm)`
+  min-height: 17rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  @media (max-width: 287px) {
+    width: 100%;
+  }
+  input[type='text'] {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    height: 1rem;
+    width: 18rem;
+    @media (max-width: 265px) {
+      width: 100%;
+    }
+  }
+  .button {
+    width: 100%;
+  }
+  input::placeholder {
+    font-weight: bold;
+    text-align: center;
   }
 `;
