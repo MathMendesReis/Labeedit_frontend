@@ -1,19 +1,8 @@
 import React from 'react';
-import { ButtonCreatedAccount, Container } from './styles';
-import InputForm from '../../components/forms/LoginForm';
-import HeaderHome from '../../components/header/HeaderHome';
-import { NavLink } from 'react-router-dom';
+import { Container } from './styles';
 
 function Main() {
-  return (
-    <Container>
-      <HeaderHome />
-      <InputForm />
-      <NavLink to='/createaccount'>
-        <ButtonCreatedAccount>Criar conta</ButtonCreatedAccount>
-      </NavLink>
-    </Container>
-  );
+  return <Container></Container>;
 }
 
 export default Main;

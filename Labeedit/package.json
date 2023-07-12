@@ -6,6 +6,7 @@
     "@hookform/resolvers": "^3.1.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/react-query-devtools": "^4.29.19",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
