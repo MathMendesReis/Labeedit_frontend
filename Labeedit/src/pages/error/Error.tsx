@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { Container } from './styles';
+import React from 'react';
 
 export default function ErrorPage() {
   const location = useLocation();
