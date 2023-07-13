@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AnyAction, Reducer } from 'redux';
 import { RootState } from '../app/store';
 
 export interface Post {

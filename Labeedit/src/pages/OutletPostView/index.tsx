@@ -11,7 +11,11 @@ export default function OutletPostView() {
       <header>
         <img src={Logo} alt='Logotipo da labenu' />
         <nav>
-          <button>
+          <button
+            onClick={() => {
+              localStorage.clear();
+            }}
+          >
             <Link to='/'>{currentUrl === '/createaccount' ? 'Entrar' : 'Logout'}</Link>
           </button>
         </nav>

@@ -1,5 +1,6 @@
 import api from './api';
 export const key = '@labeedit';
+import { Dispatch } from 'redux';
 
 export const createPost = async (
   token: string,

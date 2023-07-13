@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   form {
     display: flex;
     flex-direction: column;
@@ -15,6 +17,11 @@ export const Container = styled.div`
       background: #ededed;
       padding: 1rem;
     }
+  }
+  section {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.625rem;
   }
   @media (max-width: 330px) {
     form {

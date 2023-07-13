@@ -18,7 +18,7 @@ const schema = yup
   .required();
 function Main() {
   const [isErroInput, setIsErroInput] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<string>('password');
   const [showError, setShowError] = useState<string>('');
   const navigate = useNavigate();

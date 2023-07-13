@@ -109,7 +109,7 @@ export const Container = styled.div<containerProps>`
     background-color: transparent;
     border: none;
     position: absolute;
-    top: 55%;
+    top: 48%;
     right: 0.8rem;
     transform: translateY(-50%);
   }
@@ -177,7 +177,7 @@ export const Container = styled.div<containerProps>`
     > footer {
       button {
         width: 90%;
-        padding: 0.8125rem calc(8.3125rem / 3);
+        padding: calc(0.8125rem / 2) calc(8.3125rem / 2);
       }
     }
   }

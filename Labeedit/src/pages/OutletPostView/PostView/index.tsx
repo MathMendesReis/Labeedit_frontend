@@ -8,9 +8,10 @@ import { getToken } from '../../../helpers/getToken';
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 import { useDispatch } from 'react-redux';
 import { getAllPosts } from '../../../services/getAllPosts';
+import CardPosts from '../../../components/cardPost';
 
 export default function PostView() {
-  const post = useAppSelector((state) => state.postSlice.posts);
+  const postData = useAppSelector((state) => state.postSlice.posts);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -39,7 +40,7 @@ export default function PostView() {
     }
     getAllPosts(token, dispatch);
     return;
-  }, []);
+  }, [isLoading]);
 
   return (
     <Container>
@@ -47,6 +48,18 @@ export default function PostView() {
         <textarea defaultValue='' {...register('contents')} placeholder='Escreva seu post...' />
         <ButtonCustomer text='Postar' isLoading={isLoading} />
       </form>
+      <section>
+        {postData.map((post) => (
+          <CardPosts
+            key={post.id}
+            id={post.id}
+            nameUser={post.creator.name}
+            contents={post.contents}
+            likes={post.likes}
+            comments={post.comments}
+          />
+        ))}
+      </section>
     </Container>
   );
 }

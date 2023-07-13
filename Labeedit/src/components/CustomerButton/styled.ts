@@ -32,6 +32,6 @@ export const Container = styled.button`
   }
   @media (max-width: 388px) {
     width: 100%;
-    padding: 0;
+    padding: calc(0.8125rem / 2) calc(8.3125rem / 2);
   }
 `;
