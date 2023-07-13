@@ -1,4 +1,4 @@
-import { Container } from './styles';
+import { Container } from '../PostView/styles';
 import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import ButtonCustomer from '../../../components/CustomerButton';
@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { getAllPosts } from '../../../services/getAllPosts';
 import CardPosts from '../../../components/cardPost';
 
-export default function PostView() {
+export default function ComentsView() {
   const postData = useAppSelector((state) => state.postSlice.posts);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -46,7 +46,7 @@ export default function PostView() {
     <Container>
       <form onSubmit={handleSubmit(onSubmit)}>
         <textarea defaultValue='' {...register('contents')} placeholder='Escreva seu post...' />
-        <ButtonCustomer text='Postar' isLoading={isLoading} />
+        <ButtonCustomer text='Responder' isLoading={isLoading} />
       </form>
       <section>
         {postData.map((post) => (

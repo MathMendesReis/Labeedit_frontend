@@ -22,7 +22,6 @@ function Main() {
   const [showPassword, setShowPassword] = useState<string>('password');
   const [showError, setShowError] = useState<string>('');
   const navigate = useNavigate();
-
   const handleTogglePassword = () => {
     if (showPassword === 'text') {
       setShowPassword('password');

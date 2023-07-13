@@ -8,7 +8,7 @@ export interface Post {
   information_update: string;
   likes: number;
   dislikes: number;
-  comments: number;
+  coments: number;
   creator: {
     id: string;
     name: string;
@@ -25,6 +25,7 @@ const initialState: PostState = {
   loading: false,
   error: null,
 };
+
 export const postSlice = createSlice({
   name: 'posts',
   initialState,
@@ -32,9 +33,12 @@ export const postSlice = createSlice({
     setPosts: (state, action: PayloadAction<Post[]>) => {
       state.posts = action.payload;
     },
+    incrementLikes: (state, action: PayloadAction<Post[]>) => {
+      state.posts = action.payload;
+    },
   },
 });
-export const { setPosts } = postSlice.actions;
+export const { setPosts, incrementLikes } = postSlice.actions;
 
 export const selectCount = (state: RootState) => state.postSlice;
 export default postSlice.reducer;

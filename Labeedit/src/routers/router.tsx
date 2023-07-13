@@ -4,6 +4,7 @@ import ErrorPage from '../pages/error/Error';
 import React from 'react';
 import OutletPostView from '../pages/OutletPostView';
 import PostView from '../pages/OutletPostView/PostView';
+import ComentsView from '../pages/OutletPostView/comentsView';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: 'postView',
         element: <PostView />,
+      },
+      {
+        path: 'comentView',
+        element: <ComentsView />,
       },
     ],
   },
