@@ -17,6 +17,19 @@ export const Container = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  .custom-loader {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 60%;
+    background: conic-gradient(#0000 10%, #f2f4e8);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 5px), #000 0);
+    animation: s3 1s infinite linear;
+  }
+  @keyframes s3 {
+    to {
+      transform: rotate(1turn);
+    }
+  }
   @media (max-width: 388px) {
     width: 100%;
     padding: 0;
