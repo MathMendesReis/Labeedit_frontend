@@ -52,7 +52,7 @@ export default function PostView() {
         {postData.map((post) => (
           <CardPosts
             key={post.id}
-            id={post.id}
+            post_id={post.id}
             nameUser={post.creator.name}
             contents={post.contents}
             likes={post.likes}
