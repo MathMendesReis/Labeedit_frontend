@@ -22,6 +22,9 @@ function Main() {
   const [showPassword, setShowPassword] = useState<string>('password');
   const [showError, setShowError] = useState<string>('');
   const navigate = useNavigate();
+  const singupNavigate = () => {
+    navigate('/singup');
+  };
   const handleTogglePassword = () => {
     if (showPassword === 'text') {
       setShowPassword('password');
@@ -99,7 +102,13 @@ function Main() {
         </form>
       </main>
       <footer>
-        <button>Crie uma conta!</button>
+        <button
+          onClick={() => {
+            singupNavigate();
+          }}
+        >
+          Crie uma conta!
+        </button>
       </footer>
     </Container>
   );

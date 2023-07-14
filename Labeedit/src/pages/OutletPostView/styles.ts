@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  header {
+  > header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
