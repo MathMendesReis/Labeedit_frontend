@@ -6,6 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import ButtonCustomer from '../../components/CustomerButton';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
+import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
+import { key } from '../../services/createPost';
 
 const schema = yup
   .object({
@@ -15,8 +18,10 @@ const schema = yup
   .required();
 function Main() {
   const [isErroInput, setIsErroInput] = useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState<string>('text');
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<string>('password');
+  const [showError, setShowError] = useState<string>('');
+  const navigate = useNavigate();
   const handleTogglePassword = () => {
     if (showPassword === 'text') {
       setShowPassword('password');
@@ -44,8 +49,23 @@ function Main() {
     email: string;
     password: string;
   }
-  const onSubmit = (data: login) => {
-    console.log(data);
+  const onSubmit = async (data: login) => {
+    setIsLoading(true);
+    const { email, password } = data;
+    try {
+      const response = await api.post('/users/login', {
+        email,
+        password,
+      });
+      const token = response.data.token;
+      localStorage.setItem(key, token);
+      navigate('/postView');
+    } catch (error) {
+      const errorMessage = (error as any).response?.data?.error;
+      setShowError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -69,11 +89,12 @@ function Main() {
           <label>
             <input {...register('password')} placeholder='Senha' type={showPassword} />
             <button type='button' onClick={handleTogglePassword} className='showPassword'>
-              {showPassword === 'text' ? <IoMdEyeOff /> : <IoMdEye />}
+              {showPassword === 'password' ? <IoMdEyeOff /> : <IoMdEye />}
             </button>
             <p>{errors.password?.message}</p>
+            <p>{showError}</p>
           </label>
-          <ButtonCustomer text='Continuar' />
+          <ButtonCustomer text='Continuar' isLoading={isLoading} />
           <span></span>
         </form>
       </main>
