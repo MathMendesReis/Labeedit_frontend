@@ -65,7 +65,7 @@ export default function ComentsView() {
         {postData.map((post) => (
           <CardPosts
             key={post.id}
-            id={post.id}
+            post_id={post.id}
             nameUser={post.creator.name}
             contents={post.contents}
             likes={post.likes}
@@ -81,7 +81,7 @@ export default function ComentsView() {
         {comentsData.map((coments) => (
           <CardPosts
             key={coments.id}
-            id={coments.id}
+            post_id={coments.id}
             nameUser={coments.creator.name}
             contents={coments.contents}
             likes={coments.likes}
