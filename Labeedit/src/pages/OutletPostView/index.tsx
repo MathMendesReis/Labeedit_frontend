@@ -2,22 +2,23 @@ import { Container } from './styles';
 import React from 'react';
 import Logo from '../../assets/logo.svg';
 import IconClose from '../../assets/IconClose.svg';
-
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 export default function OutletPostView() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { id } = useParams();
+
   const currentUrl = location.pathname;
   const postsNavigate = (currentUrl: string) => {
-    if (currentUrl === '/comentView') {
+    if (currentUrl === `/comentView/${id}`) {
       navigate('/postView');
     }
   };
   return (
     <Container>
       <header>
-        {currentUrl === '/comentView' && (
+        {currentUrl === `/comentView/${id}` && (
           <button
             onClick={() => {
               postsNavigate(currentUrl);

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   form {
     display: flex;
     flex-direction: column;
@@ -18,10 +19,11 @@ export const Container = styled.div`
       padding: 1rem;
     }
   }
-  section {
+  > section {
     display: flex;
     flex-direction: column-reverse;
     gap: 0.625rem;
+    margin-top: 1rem;
   }
   @media (max-width: 330px) {
     form {

@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <PostView />,
       },
       {
-        path: 'comentView',
+        path: 'comentView/:id',
         element: <ComentsView />,
       },
     ],

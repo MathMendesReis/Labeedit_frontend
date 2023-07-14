@@ -9,11 +9,16 @@ import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 import { useDispatch } from 'react-redux';
 import { getAllPosts } from '../../../services/getAllPosts';
 import CardPosts from '../../../components/cardPost';
+import { getCommentsByPostId } from '../../../services/getComentsByPostID';
+import { useParams } from 'react-router-dom';
+import { getPostById } from '../../../services/getPostById';
+import { createComents } from '../../../services/createNewComents';
 
 export default function ComentsView() {
   const postData = useAppSelector((state) => state.postSlice.posts);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { id } = useParams<{ id: string }>(); // Especifique que 'id' é uma string
 
   type Inputs = {
     contents: string;
@@ -29,25 +34,33 @@ export default function ComentsView() {
     if (!token) {
       return;
     }
-    createPost(token, data.contents, setIsLoading);
-    getAllPosts(token, dispatch);
+    if (!id) {
+      return;
+    }
+    if (data.contents === '') {
+      return;
+    }
+    // createPost(token, data.contents, setIsLoading);
+    createComents(token, data.contents, id, setIsLoading);
+    getCommentsByPostId(id, token, dispatch);
+    getPostById(id, token, dispatch);
+
     reset();
   };
+  const comentsData = useAppSelector((state) => state.comentsSlice.coments);
+
   useEffect(() => {
     const token = getToken();
     if (!token) {
       return;
     }
-    getAllPosts(token, dispatch);
-    return;
+    if (!id) {
+      return;
+    }
+    getCommentsByPostId(id, token, dispatch);
   }, [isLoading]);
-
   return (
     <Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <textarea defaultValue='' {...register('contents')} placeholder='Escreva seu post...' />
-        <ButtonCustomer text='Responder' isLoading={isLoading} />
-      </form>
       <section>
         {postData.map((post) => (
           <CardPosts
@@ -57,6 +70,22 @@ export default function ComentsView() {
             contents={post.contents}
             likes={post.likes}
             coments={post.coments}
+          />
+        ))}
+      </section>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <textarea defaultValue='' {...register('contents')} placeholder='Escreva seu post...' />
+        <ButtonCustomer text='Responder' isLoading={isLoading} />
+      </form>
+      <section>
+        {comentsData.map((coments) => (
+          <CardPosts
+            key={coments.id}
+            id={coments.id}
+            nameUser={coments.creator.name}
+            contents={coments.contents}
+            likes={coments.likes}
+            // coments={coments.coments}
           />
         ))}
       </section>

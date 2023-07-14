@@ -7,14 +7,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { likeDislikePost } from '../../services/createLikeDislike';
 import { getToken } from '../../helpers/getToken';
 import { useDispatch } from 'react-redux';
-import { getAllPosts } from '../../services/getAllPosts';
+import { getPostById } from '../../services/getPostById';
 
 export interface propsCardPost {
   id: string;
   nameUser: string;
   contents: string;
   likes: number;
-  coments: number;
+  coments?: number;
 }
 
 export default function CardPosts({ id, nameUser, contents, likes, coments }: propsCardPost) {
@@ -25,7 +25,7 @@ export default function CardPosts({ id, nameUser, contents, likes, coments }: pr
   const currentUrl = location.pathname;
   const comentsNavigate = (currentUrl: string) => {
     if (currentUrl === '/postView') {
-      navigate('/comentView');
+      navigate(`/comentView/${id}`);
     }
   };
   return (
@@ -43,7 +43,7 @@ export default function CardPosts({ id, nameUser, contents, likes, coments }: pr
               if (!token) {
                 return;
               }
-              likeDislikePost(id, token, 1, dispatch);
+              likeDislikePost(id, token, 1, currentUrl, dispatch);
             }}
           >
             <img src={iconLike} alt='icone para dar like' />
@@ -54,22 +54,30 @@ export default function CardPosts({ id, nameUser, contents, likes, coments }: pr
               if (!token) {
                 return;
               }
-              likeDislikePost(id, token, 0, dispatch);
+              likeDislikePost(id, token, 0, currentUrl, dispatch);
             }}
           >
             <img src={iconDislike} alt='icone para dar dislike' />
           </button>
         </div>
-        <div>
-          <span>{coments}</span>
-          <button
-            onClick={() => {
-              comentsNavigate(currentUrl);
-            }}
-          >
-            <img src={iconComents} alt='icone de comentarios' />
-          </button>
-        </div>
+        {currentUrl === '/postView' && (
+          <div>
+            <span>{coments}</span>
+            <button
+              onClick={() => {
+                comentsNavigate(currentUrl);
+                if (!token) {
+                  return;
+                }
+                if (currentUrl === '/postView') {
+                  getPostById(id, token, dispatch);
+                }
+              }}
+            >
+              <img src={iconComents} alt='icone de comentarios' />
+            </button>
+          </div>
+        )}
       </footer>
     </Container>
   );

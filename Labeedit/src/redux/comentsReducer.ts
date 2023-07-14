@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 
-export interface Post {
+export interface Coments {
   id: string;
   contents: string;
   creation_date: string;
@@ -14,28 +14,28 @@ export interface Post {
     name: string;
   };
 }
-export interface PostState {
-  posts: Post[];
+export interface ComentsState {
+  coments: Coments[];
   loading: boolean;
   error: unknown;
 }
 
-const initialState: PostState = {
-  posts: [],
+const initialState: ComentsState = {
+  coments: [],
   loading: false,
   error: null,
 };
 
-export const postSlice = createSlice({
-  name: 'posts',
+export const comentsSlice = createSlice({
+  name: 'coments',
   initialState,
   reducers: {
-    setPosts: (state, action: PayloadAction<Post[]>) => {
-      state.posts = action.payload;
+    setComents: (state, action: PayloadAction<any[]>) => {
+      state.coments = action.payload;
     },
   },
 });
-export const { setPosts } = postSlice.actions;
+export const { setComents } = comentsSlice.actions;
 
 export const selectCount = (state: RootState) => state.postSlice;
-export default postSlice.reducer;
+export default comentsSlice.reducer;
