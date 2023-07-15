@@ -5,6 +5,7 @@ import React from 'react';
 import OutletPostView from '../pages/OutletPostView';
 import PostView from '../pages/OutletPostView/PostView';
 import ComentsView from '../pages/OutletPostView/comentsView';
+import CreatedAccount from '../pages/createdAccount';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     element: <OutletPostView />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: 'singup',
+        element: <CreatedAccount />,
+      },
       {
         path: 'postView',
         element: <PostView />,

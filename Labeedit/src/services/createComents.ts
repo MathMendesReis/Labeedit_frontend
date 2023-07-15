@@ -1,6 +1,5 @@
 import api from './api';
 export const key = '@labeedit';
-import { Dispatch } from 'redux';
 
 export const createPost = async (
   token: string,
@@ -18,7 +17,7 @@ export const createPost = async (
   };
 
   try {
-    const response = await api.post(url, body, { headers });
+    await api.post(url, body, { headers });
   } catch (error) {
     console.error('Erro ao criar o post:', error);
   } finally {

@@ -26,7 +26,7 @@ const initialState: PostState = {
   error: null,
 };
 
-export const postSlice = createSlice({
+export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
@@ -35,7 +35,7 @@ export const postSlice = createSlice({
     },
   },
 });
-export const { setPosts } = postSlice.actions;
+export const { setPosts } = postsSlice.actions;
 
 export const selectCount = (state: RootState) => state.postSlice;
-export default postSlice.reducer;
+export default postsSlice.reducer;

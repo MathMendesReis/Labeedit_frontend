@@ -1,15 +1,15 @@
 import api from './api';
 export const key = '@labeedit';
 import { Dispatch } from 'redux';
+import { getCommentsByPostId } from './getCommentsByPostId';
 
 export const createComents = async (
   token: string,
   contents: string,
-  id: string,
-  stateIsLoading: (isLoading: boolean) => void,
+  post_id: string,
+  dispatch: Dispatch,
 ) => {
-  const url = `/coments/${id}`;
-  stateIsLoading(true);
+  const url = `/coments/${post_id}`;
   const headers = {
     Authorization: token,
   };
@@ -18,10 +18,9 @@ export const createComents = async (
   };
 
   try {
-    const response = await api.post(url, body, { headers });
+    await api.post(url, body, { headers });
+    getCommentsByPostId(post_id, token, dispatch);
   } catch (error) {
     console.error('Erro ao criar o post:', error);
-  } finally {
-    stateIsLoading(false);
   }
 };

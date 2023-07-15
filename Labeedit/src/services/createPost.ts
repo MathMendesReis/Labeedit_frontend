@@ -1,14 +1,10 @@
+import { Dispatch } from '@reduxjs/toolkit';
 import api from './api';
+import { getAllPosts } from './getAllPosts';
 export const key = '@labeedit';
-import { Dispatch } from 'redux';
 
-export const createPost = async (
-  token: string,
-  contents: string,
-  stateIsLoading: (isLoading: boolean) => void,
-) => {
+export const createPost = async (token: string, contents: string, dispatch: Dispatch) => {
   const url = '/posts';
-  stateIsLoading(true);
   const headers = {
     Authorization: token,
   };
@@ -18,9 +14,8 @@ export const createPost = async (
 
   try {
     const response = await api.post(url, body, { headers });
+    getAllPosts(token, dispatch);
   } catch (error) {
     console.error('Erro ao criar o post:', error);
-  } finally {
-    stateIsLoading(false);
   }
 };

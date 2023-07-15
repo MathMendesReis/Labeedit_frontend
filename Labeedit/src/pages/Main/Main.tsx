@@ -22,6 +22,9 @@ function Main() {
   const [showPassword, setShowPassword] = useState<string>('password');
   const [showError, setShowError] = useState<string>('');
   const navigate = useNavigate();
+  const singupNavigate = () => {
+    navigate('/singup');
+  };
   const handleTogglePassword = () => {
     if (showPassword === 'text') {
       setShowPassword('password');
@@ -83,11 +86,16 @@ function Main() {
       </header>
       <main>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input {...register('email')} placeholder='E-mail' />
+          <input defaultValue='fulano@example.com' {...register('email')} placeholder='E-mail' />
           <p>{errors.email?.message}</p>
 
           <label>
-            <input {...register('password')} placeholder='Senha' type={showPassword} />
+            <input
+              defaultValue='fulano123'
+              {...register('password')}
+              placeholder='Senha'
+              type={showPassword}
+            />
             <button type='button' onClick={handleTogglePassword} className='showPassword'>
               {showPassword === 'password' ? <IoMdEyeOff /> : <IoMdEye />}
             </button>
@@ -99,7 +107,13 @@ function Main() {
         </form>
       </main>
       <footer>
-        <button>Crie uma conta!</button>
+        <button
+          onClick={() => {
+            singupNavigate();
+          }}
+        >
+          Crie uma conta!
+        </button>
       </footer>
     </Container>
   );
