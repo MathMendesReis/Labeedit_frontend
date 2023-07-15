@@ -93,6 +93,14 @@ export const Container = styled.div<containerProps>`
       }
     }
   }
+  .showPassword {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 48%;
+    right: 0.8rem;
+    transform: translateY(-50%);
+  }
 
   @media (max-width: 603px) {
     span {

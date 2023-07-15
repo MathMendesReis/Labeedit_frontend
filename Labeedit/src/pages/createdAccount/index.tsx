@@ -6,8 +6,12 @@ import ButtonCustomer from '../../components/CustomerButton';
 import { Container } from './styles';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
+import { handleTogglePassword } from '../../helpers/handleTogglePassword';
 
 function CreatedAccount() {
+  const [showPassword, setShowPassword] = useState<string>('password');
+
   interface bodyAxios {
     name: string;
     email: string;
@@ -37,7 +41,6 @@ function CreatedAccount() {
       password,
       accept_terms: accept_terms ? 'accepted' : '',
     };
-    console.log(body);
     try {
       await api.post('users/singup', body);
       toast.success('Usuário atualizado com sucesso!');
@@ -63,6 +66,15 @@ function CreatedAccount() {
           <label>
             <input {...register('password')} placeholder='Senha' type='password' />
             <p>{errors.password?.message}</p>
+            <button
+              type='button'
+              onClick={() => {
+                handleTogglePassword(showPassword, setShowPassword);
+              }}
+              className='showPassword'
+            >
+              {showPassword === 'password' ? <IoMdEyeOff /> : <IoMdEye />}
+            </button>
           </label>
           <div>
             <span>
@@ -70,7 +82,7 @@ function CreatedAccount() {
               Privacidade
             </span>
             <label>
-              <input {...register('accept_terms')} type='checkbox' checked />
+              <input {...register('accept_terms')} type='checkbox' />
               <span>Eu concordo em receber emails sobre coisas legais no Labeddit</span>
             </label>
           </div>

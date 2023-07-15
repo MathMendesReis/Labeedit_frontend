@@ -9,6 +9,7 @@ import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import { key } from '../../services/createPost';
+import { handleTogglePassword } from '../../helpers/handleTogglePassword';
 
 const schema = yup
   .object({
@@ -25,14 +26,6 @@ function Main() {
   const singupNavigate = () => {
     navigate('/singup');
   };
-  const handleTogglePassword = () => {
-    if (showPassword === 'text') {
-      setShowPassword('password');
-    } else {
-      setShowPassword('text');
-    }
-  };
-
   const {
     register,
     handleSubmit,
@@ -96,7 +89,13 @@ function Main() {
               placeholder='Senha'
               type={showPassword}
             />
-            <button type='button' onClick={handleTogglePassword} className='showPassword'>
+            <button
+              type='button'
+              onClick={() => {
+                handleTogglePassword(showPassword, setShowPassword);
+              }}
+              className='showPassword'
+            >
               {showPassword === 'password' ? <IoMdEyeOff /> : <IoMdEye />}
             </button>
             <p>{errors.password?.message}</p>
