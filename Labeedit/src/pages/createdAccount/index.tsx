@@ -1,10 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import ButtonCustomer from '../../components/CustomerButton';
 import { Container } from './styles';
 import api from '../../services/api';
+import { toast } from 'react-toastify';
 
 function CreatedAccount() {
   interface bodyAxios {
@@ -24,6 +25,7 @@ function CreatedAccount() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -37,8 +39,9 @@ function CreatedAccount() {
     };
     console.log(body);
     try {
-      const response = await api.post('users/singup', body);
-      console.log('Conta de usuário criada:', response.data);
+      await api.post('users/singup', body);
+      toast.success('Usuário atualizado com sucesso!');
+      reset();
     } catch (error) {
       console.error('Erro ao criar conta de usuário:', error);
     }

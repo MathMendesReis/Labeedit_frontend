@@ -7,8 +7,7 @@ import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-
 export default function OutletPostView() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { id } = useParams();
-
+  const { id } = useParams() as { id: string };
   const currentUrl = location.pathname;
   const postsNavigate = (currentUrl: string) => {
     if (currentUrl === `/comentView/${id}`) {

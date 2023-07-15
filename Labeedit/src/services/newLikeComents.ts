@@ -1,23 +1,15 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import api from './api';
-import { getAllPosts } from './getAllPosts';
-import { getPostById } from './getPostById';
+import { getCommentsByPostId } from './getCommentsByPostId';
 
 export const likeDislikeComents = async (
-  id: string,
+  coments_id: string,
   token: string,
   post_id: string,
   like: number,
-  currentUrl: string,
   dispatch: Dispatch,
 ) => {
-  console.log(`
-  id:${id}
-  token:${token}
-  post_id:${post_id}
-  like:${like}
-  `);
-  const url = `coments/likes/${id}`;
+  const url = `coments/likes/${coments_id}`;
   const headers = {
     Authorization: token,
   };
@@ -28,12 +20,8 @@ export const likeDislikeComents = async (
 
   try {
     const response = await api.post(url, body, { headers });
+    getCommentsByPostId(post_id, token, dispatch);
     response.data;
-    if (currentUrl === '/postView') {
-      getAllPosts(token, dispatch);
-    } else {
-      getPostById(id, token, dispatch);
-    }
   } catch (error) {
     console.error('Erro ao realizar o Like/Dislike:', error);
   }

@@ -29,8 +29,7 @@ export default function PostView() {
     if (!token) {
       return;
     }
-    createPost(token, data.contents, setIsLoading);
-    getAllPosts(token, dispatch);
+    createPost(token, data.contents, dispatch);
     reset();
   };
   useEffect(() => {
@@ -39,8 +38,7 @@ export default function PostView() {
       return;
     }
     getAllPosts(token, dispatch);
-    return;
-  }, [isLoading]);
+  }, []);
 
   return (
     <Container>
