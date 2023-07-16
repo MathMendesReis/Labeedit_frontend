@@ -14,11 +14,9 @@ const usePostById = (id: string, token: string) => {
       const response = await api.get(`/posts/${id}`, { headers });
       setData(response.data);
       setIsLoading(false);
-      console.log(true);
     } catch (error) {
       console.error('Erro ao recuperar os posts:', error);
       setIsLoading(false);
-      console.log(true);
     }
     return;
   };

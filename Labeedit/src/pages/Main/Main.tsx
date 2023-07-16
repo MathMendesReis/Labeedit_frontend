@@ -71,7 +71,11 @@ function Main() {
           <img src={Logo} alt='logotipo do labeedit' />
         </header>
         <main>
-          <span>LabEddit</span>
+          <div className='glitch-wrapper'>
+            <span className='glitch' data-text='LabEddit'>
+              LabEddit
+            </span>
+          </div>
         </main>
         <footer>
           <span>O projeto de rede social da Labenu</span>
@@ -79,12 +83,12 @@ function Main() {
       </header>
       <main>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input defaultValue='fulano@example.com' {...register('email')} placeholder='E-mail' />
+          <input defaultValue='' {...register('email')} placeholder='E-mail' />
           <p>{errors.email?.message}</p>
 
           <label>
             <input
-              defaultValue='fulano123'
+              defaultValue=''
               {...register('password')}
               placeholder='Senha'
               type={showPassword}

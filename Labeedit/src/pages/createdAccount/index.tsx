@@ -11,6 +11,7 @@ import { handleTogglePassword } from '../../helpers/handleTogglePassword';
 
 function CreatedAccount() {
   const [showPassword, setShowPassword] = useState<string>('password');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   interface bodyAxios {
     name: string;
@@ -41,12 +42,15 @@ function CreatedAccount() {
       password,
       accept_terms: accept_terms ? 'accepted' : '',
     };
+    setIsLoading(true);
     try {
       await api.post('users/singup', body);
       toast.success('Usuário atualizado com sucesso!');
       reset();
     } catch (error) {
       console.error('Erro ao criar conta de usuário:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -64,7 +68,7 @@ function CreatedAccount() {
           <p>{errors.email?.message}</p>
 
           <label>
-            <input {...register('password')} placeholder='Senha' type='password' />
+            <input {...register('password')} placeholder='Senha' type={showPassword} />
             <p>{errors.password?.message}</p>
             <button
               type='button'
@@ -87,7 +91,7 @@ function CreatedAccount() {
             </label>
           </div>
           <p>{errors.accept_terms?.message}</p>
-          <ButtonCustomer text='Cadastrar' />
+          <ButtonCustomer text='Cadastrar' isLoading={isLoading} />
         </form>
       </main>
       <footer></footer>
