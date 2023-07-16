@@ -6,8 +6,13 @@ import ButtonCustomer from '../../components/CustomerButton';
 import { Container } from './styles';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
+import { handleTogglePassword } from '../../helpers/handleTogglePassword';
 
 function CreatedAccount() {
+  const [showPassword, setShowPassword] = useState<string>('password');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   interface bodyAxios {
     name: string;
     email: string;
@@ -37,13 +42,15 @@ function CreatedAccount() {
       password,
       accept_terms: accept_terms ? 'accepted' : '',
     };
-    console.log(body);
+    setIsLoading(true);
     try {
       await api.post('users/singup', body);
       toast.success('Usuário atualizado com sucesso!');
       reset();
     } catch (error) {
       console.error('Erro ao criar conta de usuário:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -61,8 +68,17 @@ function CreatedAccount() {
           <p>{errors.email?.message}</p>
 
           <label>
-            <input {...register('password')} placeholder='Senha' type='password' />
+            <input {...register('password')} placeholder='Senha' type={showPassword} />
             <p>{errors.password?.message}</p>
+            <button
+              type='button'
+              onClick={() => {
+                handleTogglePassword(showPassword, setShowPassword);
+              }}
+              className='showPassword'
+            >
+              {showPassword === 'password' ? <IoMdEyeOff /> : <IoMdEye />}
+            </button>
           </label>
           <div>
             <span>
@@ -70,12 +86,12 @@ function CreatedAccount() {
               Privacidade
             </span>
             <label>
-              <input {...register('accept_terms')} type='checkbox' checked />
+              <input {...register('accept_terms')} type='checkbox' />
               <span>Eu concordo em receber emails sobre coisas legais no Labeddit</span>
             </label>
           </div>
           <p>{errors.accept_terms?.message}</p>
-          <ButtonCustomer text='Cadastrar' />
+          <ButtonCustomer text='Cadastrar' isLoading={isLoading} />
         </form>
       </main>
       <footer></footer>

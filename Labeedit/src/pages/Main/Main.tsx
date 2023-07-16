@@ -9,6 +9,7 @@ import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import { key } from '../../services/createPost';
+import { handleTogglePassword } from '../../helpers/handleTogglePassword';
 
 const schema = yup
   .object({
@@ -25,14 +26,6 @@ function Main() {
   const singupNavigate = () => {
     navigate('/singup');
   };
-  const handleTogglePassword = () => {
-    if (showPassword === 'text') {
-      setShowPassword('password');
-    } else {
-      setShowPassword('text');
-    }
-  };
-
   const {
     register,
     handleSubmit,
@@ -78,7 +71,11 @@ function Main() {
           <img src={Logo} alt='logotipo do labeedit' />
         </header>
         <main>
-          <span>LabEddit</span>
+          <div className='glitch-wrapper'>
+            <span className='glitch' data-text='LabEddit'>
+              LabEddit
+            </span>
+          </div>
         </main>
         <footer>
           <span>O projeto de rede social da Labenu</span>
@@ -86,17 +83,23 @@ function Main() {
       </header>
       <main>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input defaultValue='fulano@example.com' {...register('email')} placeholder='E-mail' />
+          <input defaultValue='' {...register('email')} placeholder='E-mail' />
           <p>{errors.email?.message}</p>
 
           <label>
             <input
-              defaultValue='fulano123'
+              defaultValue=''
               {...register('password')}
               placeholder='Senha'
               type={showPassword}
             />
-            <button type='button' onClick={handleTogglePassword} className='showPassword'>
+            <button
+              type='button'
+              onClick={() => {
+                handleTogglePassword(showPassword, setShowPassword);
+              }}
+              className='showPassword'
+            >
               {showPassword === 'password' ? <IoMdEyeOff /> : <IoMdEye />}
             </button>
             <p>{errors.password?.message}</p>

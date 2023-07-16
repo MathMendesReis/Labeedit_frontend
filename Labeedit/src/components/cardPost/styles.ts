@@ -10,6 +10,8 @@ export const Container = styled.main`
   border-radius: 0.75rem;
   border: 1px solid #e0e0e0;
   justify-content: center;
+  margin-bottom: 2rem;
+  cursor: pointer;
   > header {
     background-color: transparent;
     > h2 {
