@@ -4,12 +4,10 @@ Este é o backend do projeto Labeddit Full Stack, uma aplicação de rede social
 
 ## Tecnologias utilizadas
 
-- Node.js
-- Express.js
+- Vite
+- Styled componentes
 - TypeScript
-- SQLite
-- Knex.js
-- Jest (para testes)
+- React
 ## Funcionalidades
 
 O backend do Labeddit Full Stack oferece as seguintes funcionalidades:
